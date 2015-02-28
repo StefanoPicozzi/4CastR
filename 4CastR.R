@@ -16,34 +16,14 @@ library("scales")
 library("rgl")
 library("xlsx")
 require("grid")
+library("png")
 
-setwd("/Users/stefanopicozzi/Google Drive/4CastR/")
-
-# The top 20 ASX stocks
-zLabel <- c("AMP", "ANZ", "BHP", "BXB",   "CBA", "CSL", "IAG",	"MQG", "NAB", "ORG",	"QBE", "RIO", "SCG",	"SUN", "TLS", "WBC",	"WES", "WFD", "WOW", "WPL")	
-# Generate some random sample data
-x <- sample(1:9, 20, replace=TRUE)
-y <- sample(1:9, 20, replace=TRUE)
-z <- sample(0:500000, 20, replace=T)
-data <- data.frame(y=y, x=x, z=z, zLabel=zLabel)
-
-xAxisTitle <- "Business Case"
-yAxisTitle <- "Competitive Score"
-chartTitle <- "My Sales 4Cast"
-xIntercept <- 5
-yIntercept <- 5
-xMin <- 0
-yMin <- 0
-yGap <- 1
-xMax <- 10
-yMax <- 10
-xGap <- 1
-size <- 50
-config <- data.frame(xAxisTitle, yAxisTitle, chartTitle, 
-                     xIntercept, yIntercept, xMin, yMin, xMax, yMax, size, stringsAsFactors=FALSE)
-
+print("Building plots ...")
 get4Cast <- function(config, data) {
 
+   img <- readPNG("4CastR.png")
+   g <- rasterGrob(img, interpolate=TRUE)
+   
    printMoney <- function(x) {
       gsub(" ", "", paste("$", format(x, digits = 10, nsmall = 0, decimal.mark = ".", big.mark = ","), sep = ""))
    }
@@ -104,8 +84,11 @@ get4Cast <- function(config, data) {
       
       # Chart Settings
       theme(plot.background = element_rect(fill = 'grey')) +
-      ggtitle(paste(config$chartTitle, " [ Total=", printMoney(total), " ]", sep="")) + theme(plot.title=element_text(size=20, face="bold")) +
+      ggtitle(paste(config$chartTitle, " [ Total=", printMoney(total), " ]", sep="")) + theme(plot.title=element_text(size=15, face="bold")) +
       theme(legend.position=c(0.1,0.45)) + theme(legend.key.height=unit(1,"cm")) +
+      # annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf) +
+      # annotation_custom(g, xmin=config$xMax-0.25, xmax=config$xMax+0.25, ymin=(config$yMax/2)-1, ymax=(config$yMax/2)+1) +    
+      annotation_custom(g, xmin=config$xMax-0.1, xmax=config$xMax+0.5, ymin=config$yIntercept-0.9, ymax=config$yIntercept-0.1) +
       
       # Grid Layout
       geom_hline(yintercept=config$yIntercept) +
@@ -126,6 +109,5 @@ get4Cast <- function(config, data) {
       annotate("text", x=config$xMin, y=config$yMax-subTotalOffset, label=printMoney(c01Total), size=4, fontface="bold", hjust=0)    
 }
 
-get4Cast(config, data)
 
 
