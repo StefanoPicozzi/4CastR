@@ -88,7 +88,7 @@ get4Cast <- function(config, data) {
       theme(legend.position=c(0.1,0.45)) + theme(legend.key.height=unit(1,"cm")) +
       # annotation_custom(g, xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf) +
       # annotation_custom(g, xmin=config$xMax-0.25, xmax=config$xMax+0.25, ymin=(config$yMax/2)-1, ymax=(config$yMax/2)+1) +    
-      annotation_custom(g, xmin=config$xMax-0.1, xmax=config$xMax+0.5, ymin=config$yIntercept-0.9, ymax=config$yIntercept-0.1) +
+      annotation_custom(g, xmin=config$xMax-0.2, xmax=config$xMax+0.4, ymin=config$yIntercept-0.9, ymax=config$yIntercept-0.1) +
       
       # Grid Layout
       geom_hline(yintercept=config$yIntercept) +
