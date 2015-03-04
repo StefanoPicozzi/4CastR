@@ -8,7 +8,6 @@
 #Sys.setenv(NOAWT = "true")
 
 source("4CastR.R")
-setwd("/Users/stefanopicozzi/Google Drive/4CastR/")
 ppi <- 500
 
 setwd("/Users/stefanopicozzi/Google Drive/4CastR/")
