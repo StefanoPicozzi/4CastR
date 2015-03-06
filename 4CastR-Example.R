@@ -7,7 +7,7 @@
 # Batch control script
 #Sys.setenv(NOAWT = "true")
 
-source("4CastR2.R")
+source("4CastR.R")
 ppi <- 1000
 
 # The top 20 ASX stocks
