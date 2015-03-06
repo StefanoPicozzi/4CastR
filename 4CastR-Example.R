@@ -7,18 +7,20 @@
 # Batch control script
 #Sys.setenv(NOAWT = "true")
 
-source("4CastR.R")
-ppi <- 500
-
-setwd("/Users/stefanopicozzi/Google Drive/4CastR/")
+source("4CastR2.R")
+ppi <- 1000
 
 # The top 20 ASX stocks
-zLabel <- c("AMP", "ANZ", "BHP", "BXB",   "CBA", "CSL", "IAG",	"MQG", "NAB", "ORG",	"QBE", "RIO", "SCG",	"SUN", "TLS", "WBC",	"WES", "WFD", "WOW", "WPL")	
+zLabel <- c("AMP", "ANZ", "BHP", "BXB", "CBA", "CSL", "IAG", "MQG", "NAB", "ORG",	
+            "QBE", "RIO", "SCG", "SUN", "TLS", "WBC",	"WES", "WFD", "WOW", "WPL")	
+d <-      c("NORTH", "SOUTH", "NORTH", "SOUTH", "NORTH", "SOUTH", "NORTH", "SOUTH","NORTH", "SOUTH",
+            "NORTH", "SOUTH", "NORTH", "SOUTH", "NORTH", "SOUTH", "NORTH", "SOUTH","NORTH", "SOUTH")
+
 # Generate some random sample data
 x <- sample(1:9, 20, replace=TRUE)
 y <- sample(1:9, 20, replace=TRUE)
 z <- sample(0:500000, 20, replace=T)
-data <- data.frame(y=y, x=x, z=z, zLabel=zLabel)
+data <- data.frame(y=y, x=x, z=z, zLabel=zLabel, d=d)
 
 xAxisTitle <- "Business Case"
 yAxisTitle <- "Competitive Score"

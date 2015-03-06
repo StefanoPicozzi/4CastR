@@ -93,7 +93,7 @@ get4Cast <- function(config, data) {
       
       # Legend
       #theme(legend.position=c(0,1), legend.justification=c(2,2), legend.title=element_blank()) +
-      theme(legend.position=c(0.1, -5), legend.title=element_blank()) +
+      theme(legend.position=c(0.1,0.1), legend.title=element_blank()) +
      
      
       # Axis Labels
